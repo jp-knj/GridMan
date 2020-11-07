@@ -573,7 +573,7 @@ h3 {
   padding: 1rem;
 }
 
-button {
+.button {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -589,7 +589,7 @@ button {
   transition: 0.2s ease-out;
 }
 
-button:hover {
+.button:hover {
   background: #c08701;
 }
 

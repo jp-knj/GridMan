@@ -1,5 +1,7 @@
 @import "vendors/reset.scss";
 
+$cPrimary: #f3ab01;
+
 html {
   font-size: 62.5%;
   height: 100%;
@@ -23,7 +25,7 @@ body {
 h2 {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #f3ab01;
+  color: $cPrimary;
   margin-bottom: 1rem;
 }
 
@@ -36,14 +38,14 @@ h3 {
   display: block;
   width: 100%;
   font-size: 16px;
-  color: #f3ab01;
+  color: $cPrimary;
   padding: 0.65rem 0.5rem;
   border: 2px solid #c6c6c6;
   border-radius: 4px;
 
   &:focus {
-    border-color: #f3ab01;
-    box-shadow: 0 3px 10px 0 rgba(#f3ab01, 0.25);
+    border-color: $cPrimary;
+    box-shadow: 0 3px 10px 0 rgba($cPrimary, 0.25);
   }
 }
 
@@ -67,7 +69,7 @@ h3 {
   display: flex;
   justify-content: space-between;
   color: #fff;
-  background: #f3ab01;
+  background: $cPrimary;
   padding: 1.6rem;
   box-shadow: 0 3px 30px 0 rgba(#000, 0.4);
 
@@ -108,12 +110,12 @@ h3 {
   padding: 1rem;
 }
 
-button {
+.button {
   appearance: none;
   display: block;
   width: 100%;
   font-size: 1.6rem;
-  background: #f3ab01;
+  background: $cPrimary;
   color: #fff;
   border: 0;
   padding: 0.65rem 0.5rem 0.8rem;
@@ -121,7 +123,7 @@ button {
   transition: 0.2s ease-out;
 
   &:hover {
-    background: darken(#f3ab01, 10%);
+    background: darken($cPrimary, 10%);
   }
 }
 
