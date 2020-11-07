@@ -40,29 +40,30 @@
                     </div>
                 </div>
 
-                <div class="form__item">
-                    <input class="" type="checkbox" id="unifyGap">
+                <div class="form__item" style="margin-bottom: 32px;">
+                    <input class="" type="checkbox" id="unifyGap" checked>
                     <label class="" for="unifyGap">ColumnsとRowsのGapを結合します</label>
                 </div>
 
-                <h2>Flexbox Breakpoints</h2>
-                <div>
-                    <h3>Breakpoint 1 <button>remove</button></h3>
-                    <div class="grid--2">
-                        <p>
-                            <label class="label" for="fromWidth">From width</label>
-                            <input class="input" type="number" id="fromWidth" placeholder="e.g: 200px" pattern="\d*">
-                        </p>
-                        <p>
-                            <label class="label" for="itemsToShow">Items to show</label>
-                            <input class="input" type="number" id="itemsToShow" placeholder="e.g: 3" pattern="\d*">
-                        </p>
+                <h2>Flex Breakpoints</h2>
+                <button class="button" id="addBreakpoint">Breakpointを追加しよう！</button>
+
+                <div class="flex-breakpoints">
+                    <div class="flex-breakpoints-list">
+
                     </div>
                 </div>
+
+                <hr style="margin-bottom: 20px;">
+
+                <button id="generateCSS" class="button">CSSのコードを生成しよう！</button>
             </form>
         </aside>
         <main class="main">
             <div class="js-grid">
+                <div class="js-grid-item"></div>
+                <div class="js-grid-item"></div>
+                <div class="js-grid-item"></div>
                 <div class="js-grid-item"></div>
                 <div class="js-grid-item"></div>
                 <div class="js-grid-item"></div>

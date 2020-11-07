@@ -556,8 +556,8 @@ h3 {
           flex-grow: 1;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 360px 1fr;
-      grid-template-columns: 360px 1fr;
+  -ms-grid-columns: 320px 1fr;
+      grid-template-columns: 320px 1fr;
 }
 
 .grid--2 {
@@ -573,6 +573,26 @@ h3 {
   padding: 1rem;
 }
 
+button {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: block;
+  width: 100%;
+  font-size: 1.6rem;
+  background: #f3ab01;
+  color: #fff;
+  border: 0;
+  padding: 0.65rem 0.5rem 0.8rem;
+  border-radius: 0px;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+button:hover {
+  background: #c08701;
+}
+
 .main {
   padding: 1.6rem;
   color: #fff;
@@ -580,7 +600,7 @@ h3 {
 }
 
 .js-grid {
-  width: 90%;
+  width: 95%;
   margin: 1rem auto;
   display: -ms-grid;
   display: grid;
@@ -592,5 +612,14 @@ h3 {
   background: rgba(255, 255, 255, 0.06);
   border: 2px dashed #707070;
   min-height: 160px;
+}
+
+/* Flexbox Breapoints */
+.flex-breakpoints-item {
+  margin-bottom: 1.5rem;
+}
+
+.flex-breakpoints-item button {
+  font-size: 1.4rem;
 }
 /*# sourceMappingURL=main.css.map */
