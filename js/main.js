@@ -5,7 +5,7 @@ let unifyGap = document.querySelector('#unifyGap');
 let gridWrapper = document.querySelector('.js-grid');
 
 let breakPoint = document.querySelector('.flex-breakpoints-list');
-let addBreanpointBtn = document.querySelector('#addBreakpoint');
+let addBreakpointBtn = document.querySelector('#addBreakpoint');
 let generateCSS = document.querySelector('#generateCSS');
 
 let minColWidth = 200;
@@ -221,6 +221,29 @@ function addBreakpoint() {
   return mainDiv;
 
 }
+
+function updateBreakpoints() {
+  let listLength = breakPointsList.children.length;
+  let breakpointsItem = document.querySelectorAll('.flex-breakpoints-item');
+
+  for(let i = 0; i < listLength; i++) {
+      let breakpointsTitle = breakpointsItem[i].querySelector('h3');
+      breakpointsTitle.innerHTML = `Breakpoint ${i+1}`;
+
+      let breakpointsFirstLabel = breakpointsItem[i].querySelector('.grid--2 > div:first-child label');
+      let breakpointsFirstInput = breakpointsItem[i].querySelector('.grid--2 > div:first-child input');
+
+      breakpointsFirstLabel.setAttribute("for", `fromWidth-${i+1}`);
+      breakpointsFirstInput.setAttribute("id", `fromWidth-${i+1}`);
+
+      let breakpointsSecondLabel = breakpointsItem[i].querySelector('.grid--2 > div:last-child label');
+      let breakpointsSecondInput = breakpointsItem[i].querySelector('.grid--2 > div:last-child input');
+
+      breakpointsSecondLabel.setAttribute("for", `itemsToShow-${i+1}`);
+      breakpointsSecondInput.setAttribute("id", `itemsToShow-${i+1}`);
+  }
+}
+
 
 function getBreakpoints() {
   for(let i = 0; i < flexBreakpointsInfo.length; i++) {
