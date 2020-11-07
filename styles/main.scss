@@ -1,0 +1,14 @@
+@import "vendors/reset.scss";
+@import url(https://fonts.googleapis.com/css?family=Sawarabi+Gothic);
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  padding: 1rem;
+  font-family: "Sawarabi Mincho", sans-serif;
+}
+h1 {
+  color: red;
+}
