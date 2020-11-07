@@ -1,4 +1,3 @@
-//let cols = document.querySelector('#columns');
 let minCol = document.querySelector('#itemWidth');
 let gridColGap = document.querySelector('#gridColGap');
 let gridRowGap = document.querySelector('#gridRowGap');
@@ -6,7 +5,8 @@ let unifyGap = document.querySelector('#unifyGap');
 let gridWrapper = document.querySelector('.js-grid');
 
 let breakPoint = document.querySelector('.flex-breakpoints-list');
-let addBreanpoint = document.querySelector('#addBreakpoint');
+let addBreanpointBtn = document.querySelector('#addBreakpointBtn');
+let generateCSS = document.querySelector('#generateCSSBtn');
 
 let minColWidth = 200;
 let gridColGapValue = 16;
@@ -15,18 +15,9 @@ let gridRowGapValue = 16;
 let isUnify = false;
 
 // Flexbox breakpoints
-let flexBreakpoints = [
-  {
-      breakpointFrom: 768,
-      numOfItems: 3
-  },
-  {
-      breakpointFrom: 1080,
-      numOfItems: 2
-  }
-];
+let flexBreakpoints = [];
 
-console.log(flexBreakpoints);
+let flexBreakpointsInfo = [];
 
 // Asign default value for inputs
 minCol.value = minColWidth;
@@ -70,13 +61,75 @@ unifyGap.addEventListener('input', function () {
 
 });
 
-addBreanpoint.addEventListener('click', function (e) {
+addBreakpointBtn.addEventListener('click', function (e) {
   e.preventDefault();
   let breakpoint = addBreakpoint();
   breakPointsList.appendChild(breakpoint);
 });
 
-generateGridItems();
+generateCSS.addEventListener('click', function (e) {
+  e.preventDefault();
+  // console.log("Min col width: " + minColWidth);
+  // console.log("Grid col gap: " + gridColGapValue);
+  // console.log("Grid row gap: " + gridRowGapValue);
+  // console.log("--------")
+
+  // for(var i = 0; i < flexBreakpoints.length; i++) {
+  //     console.log("Breakpoint " + (i+1));
+  //     console.log("Breakpoint from: " + flexBreakpoints[i].breakpointFrom + "px");
+  //     console.log("Num of items: " + flexBreakpoints[i].numOfItems);
+  //     console.log("--------")
+  // }
+
+  getBreakpoints();
+
+  console.log("Flex Breakpoints" + flexBreakpoints);
+
+  console.log("Flex Breakpoints IDs" + flexBreakpointsInfo);
+
+  let breakPointsList = [];
+
+  let result1 = `
+    @mixin gridAuto() {
+      margin-left: -${gridColGapValue}px;
+      > * {
+          margin-bottom: ${gridRowGapValue}px;
+          padding-left: ${gridColGapValue}px;
+      }
+    `;
+
+  for(let i = 0; i < flexBreakpoints.length; i++) {
+      let result2 = `
+        @include mq($from: ${flexBreakpoints[i].breakpointFrom}px) {
+            > * {
+                width: calc(99%/ #{${flexBreakpoints[i].numOfItems}});
+                flex: 0 0 calc(99% / #{${flexBreakpoints[i].numOfItems}});
+            }
+        }
+      `;
+
+      breakPointsList.push(result2);
+  }
+
+  let grid = `
+    @supports(grid-area: auto) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(${minColWidth}, 1fr));
+        grid-gap: ${gridColGapValue}px ${gridRowGapValue}px;
+        margin-left: 0;
+        > * {
+            width: auto;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+    }
+  }`;
+
+  console.log(result1 + "\n"
+              + breakPointsList[0] + "\n"
+              + breakPointsList[1] + "\n"
+              + grid);
+  });
 
 /********************** Functions ***********************/
 function generateGridItems() {
@@ -166,6 +219,29 @@ function addBreakpoint() {
   mainDiv.appendChild(bpTitle);
   mainDiv.appendChild(gridDiv);
 
+  flexBreakpointsInfo.push({
+    firstInput: firstInput.getAttribute('id'),
+    secondInput: secondInput.getAttribute('id')
+  });
+
   return mainDiv;
 
+}
+
+function getBreakpoints() {
+  for(let i = 0; i < flexBreakpointsInfo.length; i++) {
+      let fromWidthID = flexBreakpointsInfo[i].firstInput;
+      let numOfItemsID = flexBreakpointsInfo[i].secondInput;
+
+      console.log(fromWidthID);
+      console.log(numOfItemsID);
+
+      let fromWidthValue = document.querySelector("#"+fromWidthID).value;
+      let numOfItemsValue = document.querySelector("#"+numOfItemsID).value;
+
+      flexBreakpoints.push({
+          breakpointFrom: fromWidthValue,
+          numOfItems: numOfItemsValue
+      });
+  }
 }
