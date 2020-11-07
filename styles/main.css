@@ -2,7 +2,6 @@
   v2.0-modified | 20110126
   License: none (public domain)
 */
-@import url(https://fonts.googleapis.com/css?family=Sawarabi+Gothic);
 html,
 body,
 div,
@@ -447,14 +446,142 @@ textarea {
 
 html {
   font-size: 62.5%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 body {
-  padding: 1rem;
-  font-family: "Sawarabi Mincho", sans-serif;
+  padding: 1.6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  font-family: "Kameron", "Noto Sans JP", sans-serif;
 }
 
-h1 {
-  color: red;
+h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #f3ab01;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.input:not([type="checkbox"]) {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  color: #f3ab01;
+  padding: 0.65rem 0.5rem;
+  border: 2px solid #c6c6c6;
+  border-radius: 4px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+form > p {
+  margin-bottom: 2rem;
+}
+
+.header {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: #fff;
+  background: #f3ab01;
+  padding: 1.6rem;
+  -webkit-box-shadow: 0 3px 30px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 0 3px 30px 0 rgba(0, 0, 0, 0.4);
+}
+
+.header__title {
+  font-size: 3.6rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.header__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header a {
+  color: inherit;
+}
+
+.header p {
+  font-size: 1.8rem;
+}
+
+.wrapper {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 360px 1fr;
+      grid-template-columns: 360px 1fr;
+}
+
+.grid--2 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.sidebar {
+  background: #ebebeb;
+  padding: 1rem;
+}
+
+.main {
+  padding: 1.6rem;
+  color: #fff;
+  background: #3b3b3b;
+}
+
+.js-grid {
+  width: 100%;
+  max-width: 90rem;
+  margin: 1rem auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+}
+
+.js-grid-item {
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px dashed #707070;
+  min-height: 160px;
 }
 /*# sourceMappingURL=main.css.map */
