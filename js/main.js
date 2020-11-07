@@ -78,7 +78,14 @@ addBreanpoint.addEventListener('click', function (e) {
 
 generateGridItems();
 
+/********************** Functions ***********************/
 function generateGridItems() {
+
+  if (unifyGap.checked) {
+    isUnify = true;
+  } else {
+    isUnify = false;
+  }
 
   if (isUnify) {
 
@@ -104,4 +111,61 @@ function generateGridItems() {
 
 }
 
+function addBreakpoint() {
 
+  let listLength = breakPointsList.children.length;
+
+  let mainDiv = document.createElement('div');
+  mainDiv.classList.add('flex-breakpoints-item');
+
+  let deleteBtn = document.createElement('button');
+  deleteBtn.innerHTML = "remove";
+
+  let bpTitle = document.createElement('h3');
+  bpTitle.innerHTML = `Breakpoint ${listLength+1}`;
+
+  let gridDiv = document.createElement('div');
+  gridDiv.classList.add('grid--2');
+
+  let firstInputDiv = document.createElement('div');
+
+  let firstInputLabel = document.createElement('label');
+  firstInputLabel.classList.add('label');
+  firstInputLabel.setAttribute('for', `fromWidth-${listLength+1}`);
+  firstInputLabel.innerHTML = "From Width";
+
+  let firstInput = document.createElement('input');
+  firstInput.classList.add('input');
+  firstInput.setAttribute('type', 'number');
+  firstInput.setAttribute('id', `fromWidth-${listLength+1}`);
+  firstInput.setAttribute('placeholder', 'e.g: 500px');
+
+  let secondInputDiv = document.createElement('div');
+
+  let secondInputLabel = document.createElement('label');
+  secondInputLabel.classList.add('label');
+  secondInputLabel.setAttribute('for', `itemsToShow-${listLength+1}`);
+  secondInputLabel.innerHTML = "Number of items";
+
+  let secondInput = document.createElement('input');
+  secondInput.classList.add('input');
+  secondInput.setAttribute('type', 'number');
+  secondInput.setAttribute('id', `itemsToShow-${listLength+1}`);
+  secondInput.setAttribute('placeholder', 'e.g: 3');
+
+  firstInputDiv.appendChild(firstInputLabel);
+  firstInputDiv.appendChild(firstInput);
+
+  secondInputDiv.appendChild(secondInputLabel);
+  secondInputDiv.appendChild(secondInput);
+
+  gridDiv.appendChild(firstInputDiv);
+  gridDiv.appendChild(secondInputDiv);
+
+  mainDiv.appendChild(deleteBtn);
+  mainDiv.appendChild(bpTitle);
+  mainDiv.appendChild(gridDiv);
+
+  return mainDiv;
+
+}
