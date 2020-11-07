@@ -32,16 +32,20 @@ gridColGap.addEventListener('input', function () {
 unifyGap.addEventListener('input', function () {
 
   if (this.checked) {
-      gridColGapValue = 20;
-      gridRowGapValue = 20;
+    gridColGapValue = 20;
+    gridRowGapValue = 20;
 
-      gridColGap.value = gridColGapValue;
-      gridRowGap.value = gridRowGapValue;
+    gridColGap.value = gridColGapValue;
+    gridRowGap.value = gridRowGapValue;
 
-      isUnify = true;
+    isUnify = true;
 
-      generateGridItems();
+    generateGridItems();
+
+  } else {
+    isUnify = false;
   }
+
 });
 
 function generateGridItems() {
