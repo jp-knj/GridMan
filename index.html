@@ -11,7 +11,7 @@
 <body>
     <header class="header">
         <div>
-            <h1 class="header__title">Grid Man</h1>
+            <h1 class="header__title">GRIDMAN</h1>
             <p>カンタンにFlexboxのコードを生成しよう！</p>
         </div>
 
@@ -57,9 +57,9 @@
 
                 <hr style="margin-bottom: 20px;">
 
-                <button id="generateCSS" class="button">CSSのコードを生成しよう！</button>
+                <button id="generateCSS" class="button" disabled>CSSのコードを生成しよう！</button>
 
-                <h3 style="margin-top: 15px;">これから追加する</h3>
+                <h3 style="margin-top: 24px; font-weight: bold;">これから追加する</h3>
                 <ul style="line-height: 1.5;">
                     <li>XXXXXXXXXXXXXX</li>
                     <li>XXXXXXXXXXXXXX</li>
@@ -69,6 +69,11 @@
             </form>
         </aside>
         <main class="main">
+            <pre id="gridCodePreview">
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                grid-gap: 16px;
+            </pre>
             <div class="js-grid">
                 <div class="js-grid-item"></div>
                 <div class="js-grid-item"></div>

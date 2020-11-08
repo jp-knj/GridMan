@@ -521,14 +521,33 @@ h3 {
   margin-right: 4px;
 }
 
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:focus,
+input[type="checkbox"]:focus {
+  outline: dashed 3px grey;
+  outline-offset: 4px;
+}
+
+.button--secondary {
+  background: transparent;
+  color: #000;
+  border: 2px solid #f3ab01;
+}
+
+.button--secondary:hover {
+  color: #fff;
+  border-color: #c08701;
+}
+
 .header {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 1rem;
   color: #fff;
   background: #f3ab01;
   padding: 1.6rem;
@@ -559,14 +578,30 @@ h3 {
   font-size: 1.8rem;
 }
 
+@media (min-width: 1000px) {
+  .header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
 .wrapper {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 320px 1fr;
-      grid-template-columns: 320px 1fr;
+}
+
+@media (min-width: 1000px) {
+  .wrapper {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 320px 1fr;
+        grid-template-columns: 320px 1fr;
+  }
 }
 
 .grid--2 {
@@ -623,6 +658,36 @@ h3 {
   min-height: 160px;
 }
 
+#gridCodePreview {
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  background: #292929;
+  padding: 0.65rem;
+}
+
+#gridCodePreview span {
+  background: #f3ab01;
+  color: #fff;
+  opacity: 0;
+  padding: 3px 5px;
+  border-radius: 5px;
+  -webkit-animation: showFull 0.5s linear forwards;
+          animation: showFull 0.5s linear forwards;
+}
+
+@-webkit-keyframes showFull {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes showFull {
+  to {
+    opacity: 1;
+  }
+}
+
 /* Flexbox Breapoints */
 .flex-breakpoints-item {
   position: relative;
@@ -651,6 +716,16 @@ h3 {
   font-size: 0;
   border-radius: 50%;
   cursor: pointer;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
+}
+
+.flex-breakpoints-item button:hover {
+  background-color: #c08701;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.25);
 }
 
 .add-breakpoint {
@@ -702,7 +777,6 @@ h3 {
   padding: 1rem;
   background: #fff;
   border-radius: 5px;
-  overflow-y: scroll;
   -webkit-animation: transform 0.3s 0.025s ease-out forwards;
           animation: transform 0.3s 0.025s ease-out forwards;
 }

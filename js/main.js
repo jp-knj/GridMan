@@ -100,7 +100,7 @@ generateCSS.addEventListener('click', function (e) {
 
     for(let i = 0; i < flexBreakpoints.length; i++) {
       let result2 =
-      `@include mq($from: ${flexBreakpoints[i].breakpointFrom}px) {
+      `@media (min-width:  ${flexBreakpoints[i].breakpointFrom}px) {
         > * {
             width: calc(99%/ #{${flexBreakpoints[i].numOfItems}});
             flex: 0 0 calc(99% / #{${flexBreakpoints[i].numOfItems}});
@@ -174,6 +174,11 @@ function generateGridItems() {
       gridRowGap.value = gridRowGapValue;
   }
 
+  let prevCode = "display: grid \n" + "grid-template-columns: "+
+  `repeat(auto-fit, minmax(<span>${minColWidth}px</span>, 1fr))` + "\n" + `grid-gap: <span>${gridRowGapValue}px ${gridColGapValue}px</span>;`;
+
+    document.querySelector('#gridCodePreview').innerHTML = prevCode;
+
   gridWrapper.style.gridTemplateColumns = `repeat(auto-fit, minmax(${minColWidth}px, 1fr))`;
   gridWrapper.style.gridColumnGap = `${gridColGapValue}px`;
   gridWrapper.style.gridRowGap = `${gridRowGapValue}px`;
@@ -187,6 +192,7 @@ function addBreakpoint() {
 
   let deleteBtn = document.createElement('button');
   deleteBtn.innerHTML = "remove";
+  deleteBtn.setAttribute('aria-label', 'Remove Breakpoint');
   deleteBtn.addEventListener('click', function(e){
     e.preventDefault();
     e.target.parentNode.parentNode.removeChild(e.target.parentNode);
@@ -200,51 +206,55 @@ function addBreakpoint() {
   let gridDiv = document.createElement('div');
   gridDiv.classList.add('grid--2');
 
-    let firstInputDiv = document.createElement('div');
+  let firstInputDiv = document.createElement('div');
 
-    let firstInputLabel = document.createElement('label');
-    firstInputLabel.classList.add('label');
-    firstInputLabel.setAttribute('for', `fromWidth-${listLength+1}`);
-    firstInputLabel.innerHTML = "幅から";
+  let firstInputLabel = document.createElement('label');
+  firstInputLabel.classList.add('label');
+  firstInputLabel.setAttribute('for', `fromWidth-${listLength+1}`);
+  firstInputLabel.innerHTML = "幅から";
 
-    let firstInput = document.createElement('input');
-    firstInput.classList.add('input');
-    firstInput.setAttribute('type', 'number');
-    firstInput.setAttribute('id', `fromWidth-${listLength+1}`);
-    firstInput.setAttribute('placeholder', 'e.g: 500px');
-    firstInput.setAttribute('required', '');
+  let firstInput = document.createElement('input');
+  firstInput.classList.add('input');
+  firstInput.setAttribute('type', 'number');
+  firstInput.setAttribute('id', `fromWidth-${listLength+1}`);
+  firstInput.setAttribute('placeholder', 'e.g: 500px');
+  firstInput.setAttribute('required', '');
 
-    let secondInputDiv = document.createElement('div');
+  let secondInputDiv = document.createElement('div');
 
-    let secondInputLabel = document.createElement('label');
-    secondInputLabel.classList.add('label');
-    secondInputLabel.setAttribute('for', `itemsToShow-${listLength+1}`);
-    secondInputLabel.innerHTML = "Itemの数";
+  let secondInputLabel = document.createElement('label');
+  secondInputLabel.classList.add('label');
+  secondInputLabel.setAttribute('for', `itemsToShow-${listLength+1}`);
+  secondInputLabel.innerHTML = "Itemの数";
 
-    let secondInput = document.createElement('input');
-    secondInput.classList.add('input');
-    secondInput.setAttribute('type', 'number');
-    secondInput.setAttribute('id', `itemsToShow-${listLength+1}`);
-    secondInput.setAttribute('placeholder', 'e.g: 3');
-    secondInput.setAttribute('required', '');
+  let secondInput = document.createElement('input');
+  secondInput.classList.add('input');
+  secondInput.setAttribute('type', 'number');
+  secondInput.setAttribute('id', `itemsToShow-${listLength+1}`);
+  secondInput.setAttribute('placeholder', 'e.g: 3');
+  secondInput.setAttribute('required', '');
 
-    firstInputDiv.appendChild(firstInputLabel);
-    firstInputDiv.appendChild(firstInput);
+  firstInputDiv.appendChild(firstInputLabel);
+  firstInputDiv.appendChild(firstInput);
 
-    secondInputDiv.appendChild(secondInputLabel);
-    secondInputDiv.appendChild(secondInput);
+  secondInputDiv.appendChild(secondInputLabel);
+  secondInputDiv.appendChild(secondInput);
 
-    gridDiv.appendChild(firstInputDiv);
-    gridDiv.appendChild(secondInputDiv);
+  gridDiv.appendChild(firstInputDiv);
+  gridDiv.appendChild(secondInputDiv);
 
-    mainDiv.appendChild(deleteBtn);
-    mainDiv.appendChild(bpTitle);
-    mainDiv.appendChild(gridDiv);
+  mainDiv.appendChild(deleteBtn);
+  mainDiv.appendChild(bpTitle);
+  mainDiv.appendChild(gridDiv);
 
-    flexBreakpointsInfo.push({
-      firstInput: firstInput.getAttribute('id'),
-      secondInput: secondInput.getAttribute('id')
-    });
+  flexBreakpointsInfo.push({
+    firstInput: firstInput.getAttribute('id'),
+    secondInput: secondInput.getAttribute('id')
+  });
+
+  if (flexBreakpointsInfo.length > 0) {
+    generateCSS.removeAttribute('disabled');
+  }
 
     return mainDiv;
 }

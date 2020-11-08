@@ -75,10 +75,31 @@ h3 {
   }
 }
 
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:focus,
+input[type="checkbox"]:focus {
+  outline: dashed 3px grey;
+  outline-offset: 4px;
+}
+
+.button--secondary {
+  background: transparent;
+  color: #000;
+  border: 2px solid $cPrimary;
+
+  &:hover {
+    color: #fff;
+    border-color: darken($cPrimary, 10%);
+  }
+}
 .header {
   position: relative;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-gap: 1rem;
   color: #fff;
   background: $cPrimary;
   padding: 1.6rem;
@@ -102,12 +123,20 @@ h3 {
   p {
     font-size: 1.8rem;
   }
+
+  @media (min-width: 1000px) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .wrapper {
   flex-grow: 1;
-  display: grid;
-  grid-template-columns: 320px 1fr;
+
+  @media (min-width: 1000px) {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+  }
 }
 
 .grid--2 {
@@ -157,6 +186,29 @@ h3 {
   min-height: 160px;
 }
 
+#gridCodePreview {
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  background: #292929;
+  padding: 0.65rem;
+
+  span {
+    background: $cPrimary;
+    color: #fff;
+    opacity: 0;
+    padding: 3px 5px;
+    border-radius: 5px;
+    animation: showFull 0.5s linear forwards;
+  }
+}
+
+@keyframes showFull {
+  to {
+    opacity: 1;
+  }
+}
+
 /* Flexbox Breapoints */
 .flex-breakpoints-item {
   position: relative;
@@ -183,6 +235,13 @@ h3 {
     font-size: 0;
     border-radius: 50%;
     cursor: pointer;
+    transition: 0.2s ease-out;
+
+    &:hover {
+      background-color: darken($cPrimary, 10%);
+      transform: scale(1.1);
+      box-shadow: 0 3px 10px 0 rgba(#000, 0.25);
+    }
   }
 }
 
@@ -232,7 +291,7 @@ h3 {
   padding: 1rem;
   background: #fff;
   border-radius: 5px;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   animation: transform 0.3s 0.025s ease-out forwards;
 
   textarea {
