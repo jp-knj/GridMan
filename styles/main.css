@@ -468,6 +468,8 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   height: 100%;
+  font-size: 1.4rem;
+  color: #2a2a32;
   font-family: "Kameron", "Noto Sans JP", sans-serif;
 }
 
@@ -517,7 +519,7 @@ h3 {
   vertical-align: middle;
   width: 18px;
   height: 18px;
-  fill: #fff;
+  fill: #fdfdfd;
   margin-right: 4px;
 }
 
@@ -534,13 +536,127 @@ input[type="checkbox"]:focus {
 
 .button--secondary {
   background: transparent;
-  color: #000;
+  color: #fdfdfd;
   border: 2px solid #f3ab01;
 }
 
 .button--secondary:hover {
-  color: #fff;
+  color: #fdfdfd;
   border-color: #c08701;
+}
+
+@-webkit-keyframes showFull {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes showFull {
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes opacity {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity {
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes transform {
+  to {
+    -webkit-transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes transform {
+  to {
+    -webkit-transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%) translateY(0);
+  }
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(51, 51, 51, 0.5);
+  opacity: 0;
+  -webkit-animation: opacity 0.5s ease-out forwards;
+          animation: opacity 0.5s ease-out forwards;
+  display: none;
+}
+
+.modal.is-active {
+  display: block;
+}
+
+.modal__content {
+  position: absolute;
+  top: 4rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(30px);
+          transform: translateX(-50%) translateY(30px);
+  width: 550px;
+  height: 400px;
+  padding: 1rem;
+  background: #fdfdfd;
+  border-radius: 5px;
+  -webkit-animation: transform 0.3s 0.025s ease-out forwards;
+          animation: transform 0.3s 0.025s ease-out forwards;
+}
+
+@media (max-width: 700px) {
+  .modal__content {
+    max-width: 85%;
+  }
+}
+
+.modal__content textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  height: 90%;
+  margin-top: 10px;
+}
+
+.modal__close {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  width: 40px;
+  height: 40px;
+  font-size: 0;
+  border: 0;
+  background: #fdfdfd;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 3px 10px 0 rgba(51, 51, 51, 0.3);
+          box-shadow: 0 3px 10px 0 rgba(51, 51, 51, 0.3);
+}
+
+.modal__close svg {
+  width: 24px;
+  height: 24px;
 }
 
 .header {
@@ -548,11 +664,11 @@ input[type="checkbox"]:focus {
   display: -ms-grid;
   display: grid;
   grid-gap: 1rem;
-  color: #fff;
+  color: #fdfdfd;
   background: #f3ab01;
   padding: 1.6rem;
-  -webkit-box-shadow: 0 3px 30px 0 rgba(0, 0, 0, 0.4);
-          box-shadow: 0 3px 30px 0 rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 3px 30px 0 rgba(51, 51, 51, 0.4);
+          box-shadow: 0 3px 30px 0 rgba(51, 51, 51, 0.4);
 }
 
 .header__title {
@@ -561,7 +677,7 @@ input[type="checkbox"]:focus {
   margin-bottom: 2rem;
 }
 
-.header__item {
+.header__author {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -613,8 +729,8 @@ input[type="checkbox"]:focus {
 }
 
 .sidebar {
-  background: #ebebeb;
-  padding: 1rem;
+  background: #fff;
+  padding: 2rem;
 }
 
 .button {
@@ -625,7 +741,7 @@ input[type="checkbox"]:focus {
   width: 100%;
   font-size: 1.6rem;
   background: #f3ab01;
-  color: #fff;
+  color: #fdfdfd;
   border: 0;
   padding: 0.65rem 0.5rem 0.8rem;
   border-radius: 0px;
@@ -639,8 +755,8 @@ input[type="checkbox"]:focus {
 
 .main {
   padding: 1.6rem;
-  color: #fff;
-  background: #3b3b3b;
+  color: #fdfdfd;
+  background: #eeeeee;
 }
 
 .js-grid {
@@ -653,39 +769,31 @@ input[type="checkbox"]:focus {
 }
 
 .js-grid-item {
-  background: rgba(255, 255, 255, 0.06);
-  border: 2px dashed #707070;
+  background: rgba(251, 213, 97, 0.5);
+  border: 2px dashed #f3ab01;
   min-height: 160px;
 }
 
 #gridCodePreview {
-  max-width: 700px;
+  font-size: 1.6rem;
+  max-width: 95%;
   margin: 0 auto;
   line-height: 1.6;
+  color: #fdfdfd;
   background: #292929;
+  border-radius: 5px;
   padding: 0.65rem;
+  overflow-x: scroll;
 }
 
 #gridCodePreview span {
   background: #f3ab01;
-  color: #fff;
+  color: #fdfdfd;
   opacity: 0;
   padding: 3px 5px;
   border-radius: 5px;
   -webkit-animation: showFull 0.5s linear forwards;
           animation: showFull 0.5s linear forwards;
-}
-
-@-webkit-keyframes showFull {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes showFull {
-  to {
-    opacity: 1;
-  }
 }
 
 /* Flexbox Breapoints */
@@ -716,16 +824,6 @@ input[type="checkbox"]:focus {
   font-size: 0;
   border-radius: 50%;
   cursor: pointer;
-  -webkit-transition: 0.2s ease-out;
-  transition: 0.2s ease-out;
-}
-
-.flex-breakpoints-item button:hover {
-  background-color: #c08701;
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-  -webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.25);
-          box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.25);
 }
 
 .add-breakpoint {
@@ -746,107 +844,15 @@ input[type="checkbox"]:focus {
   font-size: 0;
   border-radius: 50%;
   cursor: pointer;
+  -webkit-transition: 0.2s ease-out;
+  transition: 0.2s ease-out;
 }
 
-.modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  -webkit-animation: opacity 0.5s ease-out forwards;
-          animation: opacity 0.5s ease-out forwards;
-  display: none;
-}
-
-.modal.is-active {
-  display: block;
-}
-
-.modal__content {
-  position: absolute;
-  top: 4rem;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(30px);
-          transform: translateX(-50%) translateY(30px);
-  width: 550px;
-  height: 400px;
-  padding: 1rem;
-  background: #fff;
-  border-radius: 5px;
-  -webkit-animation: transform 0.3s 0.025s ease-out forwards;
-          animation: transform 0.3s 0.025s ease-out forwards;
-}
-
-@media (max-width: 700px) {
-  .modal__content {
-    max-width: 85%;
-  }
-}
-
-.modal__content textarea {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  border: 0;
-  background: transparent;
-  width: 100%;
-  height: 90%;
-  margin-top: 10px;
-}
-
-.modal__close {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  position: absolute;
-  left: -20px;
-  top: -20px;
-  width: 40px;
-  height: 40px;
-  font-size: 0;
-  border: 0;
-  background: #fff;
-  border-radius: 50%;
-  -webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.3);
-          box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.3);
-}
-
-.modal__close svg {
-  width: 24px;
-  height: 24px;
-}
-
-@-webkit-keyframes opacity {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes opacity {
-  to {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes transform {
-  to {
-    -webkit-transform: translateX(-50%) translateY(0);
-            transform: translateX(-50%) translateY(0);
-  }
-}
-
-@keyframes transform {
-  to {
-    -webkit-transform: translateX(-50%) translateY(0);
-            transform: translateX(-50%) translateY(0);
-  }
+.add-breakpoint:hover {
+  background-color: #c08701;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-box-shadow: 0 3px 10px 0 rgba(51, 51, 51, 0.25);
+          box-shadow: 0 3px 10px 0 rgba(51, 51, 51, 0.25);
 }
 /*# sourceMappingURL=main.css.map */

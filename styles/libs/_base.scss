@@ -19,6 +19,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  font-size: 1.4rem;
+  color: #2a2a32;
   font-family: "Kameron", "Noto Sans JP", sans-serif;
 }
 
@@ -88,7 +90,7 @@ input[type="checkbox"]:focus {
 
 .button--secondary {
   background: transparent;
-  color: $cBlack;
+  color: $cWhite;
   border: 2px solid $cPrimary;
 
   &:hover {
