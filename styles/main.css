@@ -781,6 +781,12 @@ input[type="checkbox"]:focus {
           animation: transform 0.3s 0.025s ease-out forwards;
 }
 
+@media (max-width: 700px) {
+  .modal__content {
+    max-width: 85%;
+  }
+}
+
 .modal__content textarea {
   -webkit-appearance: none;
      -moz-appearance: none;
