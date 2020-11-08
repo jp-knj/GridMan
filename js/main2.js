@@ -49,6 +49,8 @@ class Main {
     this.gridRowGap.addEventListener('input', this.rowGapChange.bind(this));
     this.addBreakpointBtn.addEventListener('click', this.addBreakpointEvent.bind(this));
     this.generateCSS.addEventListener('click', this.generateResult.bind(this));
+    this.copyCSS.addEventListener('click', this.copyResult.bind(this));
+    this.closeModal.addEventListener('click', this.closeResult.bind(this));
   }
 
   colChange() {
@@ -70,35 +72,35 @@ class Main {
   }
 
   generateGridItems() {
-      if(this.unifyGap.checked) {
-          this.isUnify = true;
-      } else {
-          this.isUnify = false;
-      }
+    if(this.unifyGap.checked) {
+        this.isUnify = true;
+    } else {
+        this.isUnify = false;
+    }
 
-      if(this.isUnify) {
-          let currentActiveElem = document.activeElement;
+    if(this.isUnify) {
+        let currentActiveElem = document.activeElement;
 
-          if(currentActiveElem.getAttribute('id') == 'gridColGap') {
-              this.gridRowGapValue = this.gridColGapValue;
-          }
+        if(currentActiveElem.getAttribute('id') == 'gridColGap') {
+            this.gridRowGapValue = this.gridColGapValue;
+        }
 
-          if(currentActiveElem.getAttribute('id') == 'gridRowGap') {
-              this.gridColGapValue = this.gridRowGapValue;
-          }
+        if(currentActiveElem.getAttribute('id') == 'gridRowGap') {
+            this.gridColGapValue = this.gridRowGapValue;
+        }
 
-          this.gridColGap.value = this.gridColGapValue;
-          this.gridRowGap.value = this.gridRowGapValue;
-      }
+        this.gridColGap.value = this.gridColGapValue;
+        this.gridRowGap.value = this.gridRowGapValue;
+    }
 
-      let prevCode = "display: grid; \n" + "grid-template-columns: "+
-      `repeat(autfit, minmax(<span>${this.minColWidth}px</span>, 1fr));` + "\n" + `grid-gap: <span>${this.gridRowGapValue}px ${this.gridColGapValue}px</span>;`;
+    let prevCode = "display: grid; \n" + "grid-template-columns: "+
+    `repeat(auto-fit, minmax(<span>${this.minColWidth}px</span>, 1fr));` + "\n" + `grid-gap: <span>${this.gridRowGapValue}px ${this.gridColGapValue}px</span>;`;
 
-      document.querySelector('#gridCodePreview').innerHTML = prevCode;
+    document.querySelector('#gridCodePreview').innerHTML = prevCode;
 
-      this.gridWrapper.style.gridTemplateColumns = `repeat(autfit, minmax(${this.minColWidth}px, 1fr))`;
-      this.gridWrapper.style.gridColumnGap = `${this.gridColGapValue}px`;
-      this.gridWrapper.style.gridRowGap = `${this.gridRowGapValue}px`;
+    this.gridWrapper.style.gridTemplateColumns = `repeat(auto-fit, minmax(${this.minColWidth}px, 1fr))`;
+    this.gridWrapper.style.gridColumnGap = `${this.gridColGapValue}px`;
+    this.gridWrapper.style.gridRowGap = `${this.gridRowGapValue}px`;
   }
 
   addBreakpointEvent(e) {
@@ -129,7 +131,7 @@ class Main {
     let firstInputLabel = document.createElement('label');
     firstInputLabel.classList.add('label');
     firstInputLabel.setAttribute('for', `fromWidth-${listLength+1}`);
-    firstInputLabel.innerHTML = "Min Width";
+    firstInputLabel.innerHTML = "最小の幅";
 
     let firstInput = document.createElement('input');
     firstInput.classList.add('input');
@@ -143,7 +145,7 @@ class Main {
     let secondInputLabel = document.createElement('label');
     secondInputLabel.classList.add('label');
     secondInputLabel.setAttribute('for', `itemsToShow-${listLength+1}`);
-    secondInputLabel.innerHTML = "Items";
+    secondInputLabel.innerHTML = "ボックスの数";
 
     let secondInput = document.createElement('input');
     secondInput.classList.add('input');
@@ -244,7 +246,7 @@ class Main {
     this.updateBreakpoints();
 
     let parentElm = e.target.parentNode;
-    let parentLabel = parentElm.querySelector('.c-label');
+    let parentLabel = parentElm.querySelector('.label');
     let labelFor = parentLabel.getAttribute('for');
     let index = parseInt(labelFor.replace(/[^0-9]/g, ''), 10);
 
@@ -267,19 +269,19 @@ class Main {
       this.breakPointsList.appendChild(breakpoint);
 
       if(i === 0) {
-        breakpointTitle.innerHTML = "Small";
+        breakpointTitle.innerHTML = "Phone";
         inputs[0].value = "320";
         inputs[1].value = "2";
       }
 
       if(i === 1) {
-        breakpointTitle.innerHTML = "Medium";
+        breakpointTitle.innerHTML = "Tablet";
         inputs[0].value = "768";
         inputs[1].value = "3";
       }
 
       if(i === 2) {
-        breakpointTitle.innerHTML = "Large";
+        breakpointTitle.innerHTML = "Desktop";
         inputs[0].value = "1024";
         inputs[1].value = "4";
       }
@@ -309,8 +311,8 @@ class Main {
         `;
 
 
-    for(let i = 0; i < this.flexBreakpoints.length; i++) {
-      if(this.flexBreakpoints[i].breakpointFrom != "" && this.flexBreakpoints[i].numOfItems != "") {
+    for (let i = 0; i < this.flexBreakpoints.length; i++) {
+      if (this.flexBreakpoints[i].breakpointFrom != "" && this.flexBreakpoints[i].numOfItems != "") {
         let result2 = `
           @media (min-width: ${this.flexBreakpoints[i].breakpointFrom}px) {
             > * {
@@ -342,17 +344,41 @@ class Main {
 
     this.resultModal.classList.add('is-active');
 
-    this.copyCSS.addEventListener('click', function(e){
-        e.preventDefault();
-        this.resultCode.select();
-        document.execCommand("copy");
-    });
+    let focusableElms = this.resultModal.querySelectorAll('a[href]:not([disabled]), button:not([disabled])');
 
-    this.closeModal.addEventListener('click', function(e){
-        e.preventDefault();
-        this.resultModal.classList.remove('is-active');
+    let firstActiveElm = focusableElms[0];
+    let lastActiveElm = focusableElms[focusableElms.length - 1];
+
+    let KEYCODE_TAB = 9;
+
+    this.resultModal.addEventListener('keydown', function(e) {
+      if (e.key === 'Tab' || e.keyCode === KEYCODE_TAB) {
+        if ( e.shiftKey )  {
+          if (document.activeElement === firstActiveElm) {
+            lastActiveElm.focus();
+            e.preventDefault();
+          }
+
+        } else {
+          if (document.activeElement === lastActiveElm) {
+            firstActiveElm.focus();
+            e.preventDefault();
+          }
+        }
+      }
     });
-}
+  }
+
+  copyResult(e) {
+    e.preventDefault();
+    this.resultCode.select();
+    document.execCommand("copy");
+  }
+
+  closeResult(e) {
+    e.preventDefault();
+    this.resultModal.classList.remove('is-active');
+  }
 }
 
-let main = new Main();
+new Main();
