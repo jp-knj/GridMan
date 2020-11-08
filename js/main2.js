@@ -206,14 +206,14 @@ class Main {
       let breakpointsTitle = breakpointsItem[i].querySelector('h3');
       breakpointsTitle.innerHTML = `Breakpoint ${i+1}`;
 
-      let breakpointsFirstLabel = breakpointsItem[i].querySelector('.o-grid--2 > div:first-child label');
-      let breakpointsFirstInput = breakpointsItem[i].querySelector('.o-grid--2 > div:first-child input');
+      let breakpointsFirstLabel = breakpointsItem[i].querySelector('.grid--2 > div:first-child label');
+      let breakpointsFirstInput = breakpointsItem[i].querySelector('.grid--2 > div:first-child input');
 
       breakpointsFirstLabel.setAttribute("for", `fromWidth-${i+1}`);
       breakpointsFirstInput.setAttribute("id", `fromWidth-${i+1}`);
 
-      let breakpointsSecondLabel = breakpointsItem[i].querySelector('.o-grid--2 > div:last-child label');
-      let breakpointsSecondInput = breakpointsItem[i].querySelector('.o-grid--2 > div:last-child input');
+      let breakpointsSecondLabel = breakpointsItem[i].querySelector('.grid--2 > div:last-child label');
+      let breakpointsSecondInput = breakpointsItem[i].querySelector('.grid--2 > div:last-child input');
 
       breakpointsSecondLabel.setAttribute("for", `itemsToShow-${i+1}`);
       breakpointsSecondInput.setAttribute("id", `itemsToShow-${i+1}`);
@@ -262,26 +262,28 @@ class Main {
     // Add three breakpoints by default
     for(let i = 0; i < 3; i++) {
       let breakpoint = this.addBreakpoint(i);
-      //console.log(breakpoint);
       let breakpointTitle = breakpoint.querySelector('h3');
       let inputs = breakpoint.querySelectorAll('input');
 
       this.breakPointsList.appendChild(breakpoint);
 
       if(i === 0) {
-        breakpointTitle.innerHTML = "Phone";
-        inputs[0].value = "320";
+        breakpointTitle.innerHTML = "Breakpoint 1";
+        // iPhone X screen size
+        inputs[0].value = "375";
         inputs[1].value = "2";
       }
 
       if(i === 1) {
-        breakpointTitle.innerHTML = "Tablet";
+        breakpointTitle.innerHTML = "Breakpoint 2";
+        // iPad screen size
         inputs[0].value = "768";
         inputs[1].value = "3";
       }
 
       if(i === 2) {
-        breakpointTitle.innerHTML = "Desktop";
+        breakpointTitle.innerHTML = "Breakpoint 3";
+        // iPad Pro screen size
         inputs[0].value = "1024";
         inputs[1].value = "4";
       }
