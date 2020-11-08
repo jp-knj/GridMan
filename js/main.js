@@ -91,51 +91,52 @@ addBreakpointBtn.addEventListener('click', function (e) {
 
 generateCSS.addEventListener('click', function (e) {
   e.preventDefault();
-
   getBreakpoints();
 
   let breakPointsList = [];
 
-  let result1 =
-    `@mixin grid() {
-        display: flex;
-        flex-wrap: wrap;
-        @supports(grid-area: auto) {
-            display: grid;
-            grid-gap: ${gridColGapValue}px ${gridRowGapValue}px;
-        }
-    }
-
-    @mixin gridAuto() {
+  let result1 = `@mixin grid() {
+  display: flex;
+  flex-wrap: wrap;
+  @supports(grid-area: auto) {
+      display: grid;
+      grid-gap: ${gridColGapValue}px ${gridRowGapValue}px;
+  }
+}
+@mixin gridAuto() {
       margin-left: -${gridColGapValue}px;
-        > * {
+      > * {
           margin-bottom: ${gridRowGapValue}px;
           margin-left: ${gridColGapValue}px;
-        }`;
+      }
+  `;
 
-    for(let i = 0; i < flexBreakpoints.length; i++) {
-      let result2 =
-      `@media (min-width:  ${flexBreakpoints[i].breakpointFrom}px) {
-        > * {
-          width: calc((99%/ #{${flexBreakpoints[i].numOfItems}}) - ${gridColGapValue}px);
-          flex: 0 0 calc((99% / #{${flexBreakpoints[i].numOfItems}}) - ${gridColGapValue}px);
-        }
-    }
-        `;
 
-        breakPointsList.push(result2);
-    }
+  for(let i = 0; i < flexBreakpoints.length; i++) {
+      if(flexBreakpoints[i].breakpointFrom != "") {
+          let result2 = `
+          @media (min-width: ${flexBreakpoints[i].breakpointFrom}px) {
+              > * {
+                  width: calc((99%/ #{${flexBreakpoints[i].numOfItems}}) - ${gridColGapValue}px);
+                  flex: 0 0 calc((99% / #{${flexBreakpoints[i].numOfItems}}) - ${gridColGapValue}px);
+              }
+          }
+              `;
 
-    let grid = `
-    @supports(grid-area: auto) {
-        grid-template-columns: repeat(auto-fit, minmax(${minColWidth}px, 1fr));
-        margin-left: 0;
-        > * {
-            width: auto;
-            margin-left: 0;
-            margin-bottom: 0;
-        }
-    }
+          breakPointsList.push(result2);
+      }
+  }
+
+  let grid = `
+  @supports(grid-area: auto) {
+      grid-template-columns: repeat(auto-fit, minmax(${minColWidth}px, 1fr));
+      margin-left: 0;
+      > * {
+          width: auto;
+          margin-left: 0;
+          margin-bottom: 0;
+      }
+  }
 }`;
 
   let resultModal = document.querySelector('#resultModal');
@@ -144,20 +145,21 @@ generateCSS.addEventListener('click', function (e) {
   let copyCSS = document.querySelector('#copyCSS');
   let closeModal = document.querySelector('#close');
 
-  let code = result1 + "\n" + breakPointsList + "\n" + grid;
+  let code = result1 + "\n" + breakPointsList.join("\n") + "\n" + grid;
 
   resultCode.innerHTML = code;
+
   resultModal.classList.add('is-active');
 
   copyCSS.addEventListener('click', function(e){
-    e.preventDefault();
-    resultCode.select();
-    document.execCommand("copy");
+      e.preventDefault();
+      resultCode.select();
+      document.execCommand("copy");
   });
 
   closeModal.addEventListener('click', function(e){
-    e.preventDefault();
-    resultModal.classList.remove('is-active');
+      e.preventDefault();
+      resultModal.classList.remove('is-active');
   });
 
 });
