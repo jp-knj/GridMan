@@ -110,15 +110,15 @@ generateCSS.addEventListener('click', function (e) {
       margin-left: -${gridColGapValue}px;
         > * {
           margin-bottom: ${gridRowGapValue}px;
-          padding-left: ${gridColGapValue}px;
+          margin-left: ${gridColGapValue}px;
         }`;
 
     for(let i = 0; i < flexBreakpoints.length; i++) {
       let result2 =
       `@media (min-width:  ${flexBreakpoints[i].breakpointFrom}px) {
         > * {
-            width: calc(99%/ #{${flexBreakpoints[i].numOfItems}});
-            flex: 0 0 calc(99% / #{${flexBreakpoints[i].numOfItems}});
+          width: calc((99%/ #{${flexBreakpoints[i].numOfItems}}) - ${gridColGapValue}px);
+          flex: 0 0 calc((99% / #{${flexBreakpoints[i].numOfItems}}) - ${gridColGapValue}px);
         }
     }
         `;
@@ -128,11 +128,11 @@ generateCSS.addEventListener('click', function (e) {
 
     let grid = `
     @supports(grid-area: auto) {
-        grid-template-columns: repeat(auto-fit, minmax(${minColWidth}, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(${minColWidth}px, 1fr));
         margin-left: 0;
         > * {
             width: auto;
-            padding-left: 0;
+            margin-left: 0;
             margin-bottom: 0;
         }
     }
