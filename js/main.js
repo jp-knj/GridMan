@@ -19,6 +19,24 @@ let flexBreakpoints = [];
 
 let flexBreakpointsInfo = [];
 
+// Add three breakpoints by default
+for(let i = 0; i < 3; i++) {
+  let breakpoint = addBreakpoint(i);
+  let breakpointTitle = breakpoint.querySelector('h3');
+
+  breakPointsList.appendChild(breakpoint);
+
+  if(i === 0) {
+      breakpointTitle.innerHTML = "SmartPhone";
+  }
+  if(i === 1) {
+      breakpointTitle.innerHTML = "Tablet";
+  }
+  if(i === 2) {
+      breakpointTitle.innerHTML = "DeskTop";
+  }
+}
+
 // Asign default value for inputs
 minCol.value = minColWidth;
 gridColGap.value = gridColGapValue;
@@ -184,8 +202,8 @@ function generateGridItems() {
   gridWrapper.style.gridRowGap = `${gridRowGapValue}px`;
 }
 
-function addBreakpoint() {
-  let listLength = breakPointsList.children.length;
+function addBreakpoint(defaultLength = 0) {
+  let listLength = (defaultLength > 0) ? defaultLength : breakPointsList.children.length;
 
   let mainDiv = document.createElement('div');
   mainDiv.classList.add('flex-breakpoints-item');
