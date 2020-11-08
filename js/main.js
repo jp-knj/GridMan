@@ -27,7 +27,7 @@ for(let i = 0; i < 3; i++) {
   breakPointsList.appendChild(breakpoint);
 
   if(i === 0) {
-      breakpointTitle.innerHTML = "SmartPhone";
+      breakpointTitle.innerHTML = "Phone";
   }
   if(i === 1) {
       breakpointTitle.innerHTML = "Tablet";
@@ -93,9 +93,6 @@ generateCSS.addEventListener('click', function (e) {
   e.preventDefault();
 
   getBreakpoints();
-
-  console.log("Flex Breakpoints" + flexBreakpoints);
-  console.log("Flex Breakpoints IDs" + flexBreakpointsInfo);
 
   let breakPointsList = [];
 
@@ -163,7 +160,6 @@ generateCSS.addEventListener('click', function (e) {
     resultModal.classList.remove('is-active');
   });
 
-  //console.log(result1 + "\n" + breakPointsList + "\n" + grid);
 });
 
 generateGridItems();
@@ -214,9 +210,33 @@ function addBreakpoint(defaultLength = 0) {
   deleteBtn.addEventListener('click', function(e){
     e.preventDefault();
     e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+
     // Update the number, IDs of the breakpoints
     updateBreakpoints();
+
+    let parentElm = e.target.parentNode;
+    let parentLabel = parentElm.querySelector('.label');
+    let labelFor = parentLabel.getAttribute('for');
+    let index = parseInt(labelFor.replace(/[^0-9]/g, ''), 10);
+
+    flexBreakpointsInfo.splice(index-1, 1);
+      // Rename the array IDs to match the inputs
+      renameFlexbreakpointsInfo(flexBreakpointsInfo.length);
+      console.log(flexBreakpointsInfo);
   });
+
+function renameFlexbreakpointsInfo(arrayLength) {
+  flexBreakpointsInfo = [];
+
+  console.log(arrayLength);
+
+  for (var i = 0; i < arrayLength; i++) {
+    flexBreakpointsInfo.push({
+      firstInput: `fromWidth-${i+1}`,
+      secondInput: `itemsToShow-${i+1}`
+    });
+  }
+}
 
   let bpTitle = document.createElement('h3');
   bpTitle.innerHTML = `Breakpoint ${listLength+1}`;
@@ -301,12 +321,14 @@ function updateBreakpoints() {
 }
 
 function getBreakpoints() {
+
+  console.log("Test:" + flexBreakpointsInfo.length);
+
+  flexBreakpoints = [];
+
   for(let i = 0; i < flexBreakpointsInfo.length; i++) {
     let fromWidthID = flexBreakpointsInfo[i].firstInput;
     let numOfItemsID = flexBreakpointsInfo[i].secondInput;
-
-    console.log(fromWidthID);
-    console.log(numOfItemsID);
 
     let fromWidthValue = document.querySelector("#"+fromWidthID).value;
     let numOfItemsValue = document.querySelector("#"+numOfItemsID).value;

@@ -96,6 +96,18 @@ input[type="checkbox"]:focus {
     border-color: darken($cPrimary, 10%);
   }
 }
+
+// .form__inner {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   grid-gap: 8px;
+//   margin-bottom: 8px;
+
+//   @media (min-width: 600px) {
+//     grid-template-columns: 2fr 1fr 1fr;
+//   }
+// }
+
 .header {
   position: relative;
   display: grid;

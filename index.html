@@ -23,49 +23,51 @@
     <div class="wrapper">
         <aside class="sidebar">
             <form class="form" action="submit">
-                <div class="form__item">
-                    <label class="label" for="itemWidth">最小のItem幅</label>
-                    <input class="input" type="number" step="25" id="itemWidth" placeholder="e.g: 200px" value="200" pattern="\d*">
-                </div>
-
-                <div class="form__item grid--2">
-                    <div>
-                        <label class="label" for="gridColGap">列のGap幅</label>
-                        <input class="input" type="number" min="0" step="4" id="gridColGap" placeholder="e.g: 10px">
+                <div class="form__inner">
+                    <div class="form__item">
+                        <label class="label" for="itemWidth">最小のItem幅</label>
+                        <input class="input" type="number" step="25" id="itemWidth" placeholder="e.g: 200px" value="200" pattern="\d*">
                     </div>
 
-                    <div>
-                        <label class="label" for="gridRowGap">行のGap幅</label>
-                        <input class="input" type="number" min="0" step="4" id="gridRowGap" placeholder="e.g: 10px">
-                    </div>
-                </div>
+                    <div class="form__item grid--2">
+                        <div>
+                            <label class="label" for="gridColGap">列のGap幅</label>
+                            <input class="input" type="number" min="0" step="4" id="gridColGap" placeholder="e.g: 10px">
+                        </div>
 
-                <div class="form__item" style="margin-bottom: 32px;">
-                    <input class="" type="checkbox" id="unifyGap" checked>
-                    <label class="" for="unifyGap">行と列のGap幅を等しくします</label>
-                </div>
-
-                <div style="position: relative;">
-                    <h2>Flex Breakpoints</h2>
-                    <button id="addBreakpoint" class="add-breakpoint button">Breakpointを追加しよう</button>
-
-                    <div class="flex-breakpoints">
-                        <div class="flex-breakpoints-list">
+                        <div>
+                            <label class="label" for="gridRowGap">行のGap幅</label>
+                            <input class="input" type="number" min="0" step="4" id="gridRowGap" placeholder="e.g: 10px">
                         </div>
                     </div>
+
+                    <div class="form__item" style="margin-bottom: 32px;">
+                        <input class="" type="checkbox" id="unifyGap" checked>
+                        <label class="" for="unifyGap">行と列のGap幅を等しくします</label>
+                    </div>
+
+                    <div style="position: relative;">
+                        <h2>Flex Breakpoints</h2>
+                        <button id="addBreakpoint" class="add-breakpoint button">Breakpointを追加しよう</button>
+
+                        <div class="flex-breakpoints">
+                            <div class="flex-breakpoints-list">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr style="margin-bottom: 20px;">
+
+                    <button id="generateCSS" class="button" disabled>CSSのコードを生成しよう！</button>
+
+                    <h3 style="margin-top: 24px; font-weight: bold;">これから追加する</h3>
+                    <ul style="line-height: 1.5;">
+                        <li>XXXXXXXXXXXXXX</li>
+                        <li>XXXXXXXXXXXXXX</li>
+                        <li>XXXXXXXXXXXXXX</li>
+                        <li>XXXXXXXXXXXXXX</li>
+                    </ul>
                 </div>
-
-                <hr style="margin-bottom: 20px;">
-
-                <button id="generateCSS" class="button" disabled>CSSのコードを生成しよう！</button>
-
-                <h3 style="margin-top: 24px; font-weight: bold;">これから追加する</h3>
-                <ul style="line-height: 1.5;">
-                    <li>XXXXXXXXXXXXXX</li>
-                    <li>XXXXXXXXXXXXXX</li>
-                    <li>XXXXXXXXXXXXXX</li>
-                    <li>XXXXXXXXXXXXXX</li>
-                </ul>
             </form>
         </aside>
         <main class="main">
