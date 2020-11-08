@@ -22,7 +22,7 @@
 
     <div class="wrapper">
         <aside class="sidebar">
-            <form class="form">
+            <form class="form" action="submit">
                 <div class="form__item">
                     <label class="label" for="itemWidth">Minimum Item Width</label>
                     <input class="input" type="number" step="25" id="itemWidth" placeholder="e.g: 200px" value="200" pattern="\d*">
@@ -45,12 +45,13 @@
                     <label class="" for="unifyGap">ColumnとRowのGap幅を同じにします</label>
                 </div>
 
-                <h2>Flex Breakpoints</h2>
-                <button class="button" id="addBreakpoint">Breakpointを追加しよう！</button>
+                <div style="position: relative;">
+                    <h2>Flex Breakpoints</h2>
+                    <button id="addBreakpoint" class="add-breakpoint button">Breakpointを追加しよう</button>
 
-                <div class="flex-breakpoints">
-                    <div class="flex-breakpoints-list">
-
+                    <div class="flex-breakpoints">
+                        <div class="flex-breakpoints-list">
+                        </div>
                     </div>
                 </div>
 
@@ -76,6 +77,13 @@
             </div>
         </main>
     </div>
+
+    <div id="resultModal" class="modal">
+        <div id="modalBody" class="modal__content">
+            <pre id="resultCode"></pre>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
 </body>
 </html>
