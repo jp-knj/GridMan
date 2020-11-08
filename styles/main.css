@@ -512,6 +512,15 @@ h3 {
   margin-bottom: 1rem;
 }
 
+.button--with-icon svg {
+  display: inline-block;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+  margin-right: 4px;
+}
+
 .header {
   position: relative;
   display: -webkit-box;
@@ -694,8 +703,45 @@ h3 {
   background: #fff;
   border-radius: 5px;
   overflow-y: scroll;
-  -webkit-animation: transform 0.3s 0.15s ease-out forwards;
-          animation: transform 0.3s 0.15s ease-out forwards;
+  -webkit-animation: transform 0.3s 0.025s ease-out forwards;
+          animation: transform 0.3s 0.025s ease-out forwards;
+}
+
+.modal__content textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  height: 90%;
+  margin-top: 10px;
+}
+
+.modal__close {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  width: 40px;
+  height: 40px;
+  font-size: 0;
+  border: 0;
+  background: #fff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.modal__close svg {
+  width: 24px;
+  height: 24px;
 }
 
 @-webkit-keyframes opacity {
