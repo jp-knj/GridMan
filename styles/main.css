@@ -477,12 +477,12 @@ h2 {
   font-size: 2.5rem;
   font-weight: bold;
   color: #f3ab01;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 h3 {
   font-size: 1.8rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.4rem;
 }
 
 .input:not([type="checkbox"]) {
@@ -777,7 +777,7 @@ input[type="checkbox"]:focus {
 #gridCodePreview {
   font-size: 1.6rem;
   max-width: 95%;
-  margin: 0 auto;
+  margin: 0 auto 3rem auto;
   line-height: 1.6;
   color: #fdfdfd;
   background: #292929;
@@ -799,7 +799,7 @@ input[type="checkbox"]:focus {
 /* Flexbox Breapoints */
 .flex-breakpoints-item {
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .flex-breakpoints-item h3 {
