@@ -131,7 +131,7 @@ class Main {
     let firstInputLabel = document.createElement('label');
     firstInputLabel.classList.add('label');
     firstInputLabel.setAttribute('for', `fromWidth-${listLength+1}`);
-    firstInputLabel.innerHTML = "最小の幅";
+    firstInputLabel.innerHTML = "最小のView幅";
 
     let firstInput = document.createElement('input');
     firstInput.classList.add('input');
@@ -145,7 +145,7 @@ class Main {
     let secondInputLabel = document.createElement('label');
     secondInputLabel.classList.add('label');
     secondInputLabel.setAttribute('for', `itemsToShow-${listLength+1}`);
-    secondInputLabel.innerHTML = "ボックスの数";
+    secondInputLabel.innerHTML = "Itemの数";
 
     let secondInput = document.createElement('input');
     secondInput.classList.add('input');
